@@ -32,4 +32,54 @@ Di era platform streaming dan big‑budget productions, investasi untuk membuat 
 2. Hitung **cosine similarity** antar baris (film).  
 
 #### Top‑N Recommendation
-- Untuk setiap film input atau *user profile* sederhana (list film favorit), pilih film dengan similarity tertinggi.
+- Untuk setiap film input sederhana (list film favorit), pilih film dengan similarity tertinggi.
+
+
+## Data Understanding
+### Sumber Data
+Dataset: [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata)  
+Jumlah Data: 4803 film
+
+### Daftar Lengkap Variabel/Fitur
+Berikut adalah metadata lengkap yang tersedia dalam dataset:
+
+| No | Kolom | Tipe Data | Non-Null Count | Deskripsi | Contoh Data |
+|----|-------|-----------|----------------|-----------|-------------|
+| 1 | budget | int64 | 4803 | Anggaran produksi film (dalam USD) | 237000000 |
+| 2 | genres | object | 4803 | Daftar genre dalam format JSON | `[{"id":28,"name":"Action"},{"id":12,"name":"Adventure"}]` |
+| 3 | homepage | object | 1712 | URL website resmi film | "http://www.avatarmovie.com/" |
+| 4 | id | int64 | 4803 | ID unik film di TMDB | 19995 |
+| 5 | keywords | object | 4803 | Kata kunci terkait film (JSON) | `[{"id":1463,"name":"culture clash"},{"id":2968,"name":"future"}]` |
+| 6 | original_language | object | 4803 | Bahasa asli film (kode ISO) | "en" |
+| 7 | original_title | object | 4803 | Judul asli film | "Avatar" |
+| 8 | overview | object | 4800 | Sinopsis/ringkasan cerita | "In the 22nd century, a paraplegic Marine..." |
+| 9 | popularity | float64 | 4803 | Skor popularitas TMDB | 150.437577 |
+| 10 | production_companies | object | 4803 | Perusahaan produksi (JSON) | `[{"name":"Ingenious Film Partners","id":289}]` |
+| 11 | production_countries | object | 4803 | Negara produksi (JSON) | `[{"iso_3166_1":"US","name":"United States"}]` |
+| 12 | release_date | object | 4802 | Tanggal rilis (YYYY-MM-DD) | "2009-12-10" |
+| 13 | revenue | int64 | 4803 | Pendapatan kotor (USD) | 2787965087 |
+| 14 | runtime | float64 | 4801 | Durasi film (menit) | 162.0 |
+| 15 | spoken_languages | object | 4803 | Bahasa yang digunakan (JSON) | `[{"iso_639_1":"en","name":"English"}]` |
+| 16 | status | object | 4803 | Status rilis | "Released" |
+| 17 | tagline | object | 3959 | Slogan film | "Enter the World of Pandora." |
+| 18 | title | object | 4803 | Judul film | "Avatar" |
+| 19 | vote_average | float64 | 4803 | Rating rata-rata (0-10) | 7.2 |
+| 20 | vote_count | int64 | 4803 | Jumlah vote | 11800 |
+
+### Kualitas Data:
+   - Tidak ada data duplikat
+   - Missing values:
+| Kolom | Jumlah Missing | Persentase |
+|-------|----------------|------------|
+| homepage | 3091 | 64.36% |
+| tagline | 844 | 17.57% |
+| overview | 3 | 0.06% |
+| release_date | 1 | 0.02% |
+| runtime | 2 | 0.04% |
+
+### Eksplorasi Data
+**Distribusi Genre**:
+   - Genre paling umum: Drama (2361 film), Comedy (1713 film), Thriller (981 film)
+   - Visualisasi distribusi 10 besar genre:
+
+   ![Top 10 Genres](./image.png)
