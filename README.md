@@ -70,13 +70,13 @@ Berikut adalah metadata lengkap yang tersedia dalam dataset:
    - Tidak ada data duplikat
    - Missing values:
 
-| Kolom | Jumlah Missing | Persentase |
-|-------|----------------|------------|
-| homepage | 3091 | 64.36% |
-| tagline | 844 | 17.57% |
-| overview | 3 | 0.06% |
-| release_date | 1 | 0.02% |
-| runtime | 2 | 0.04% |
+| Kolom | Jumlah Missing |
+|-------|----------------|
+| homepage | 3091 |
+| tagline | 844 |
+| overview | 3 |
+| release_date | 1 |
+| runtime | 2 |
 
 ### Eksplorasi Data
 **Distribusi Genre**:
@@ -84,3 +84,81 @@ Berikut adalah metadata lengkap yang tersedia dalam dataset:
    - Visualisasi distribusi 10 besar genre:
 
    ![Top 10 Genres](./image/image.png)
+
+
+## Data Preparation
+
+---
+
+### 1. Ekstraksi dan Transformasi Data
+
+#### Proses yang Dilakukan:
+- Membuat **salinan dataset asli** untuk menjaga keutuhan data sumber.
+- Mengekstrak data JSON dari kolom `keywords` menjadi daftar kata kunci yang terstruktur.
+- Menangani nilai kosong pada kolom `overview` dengan **string kosong**.
+- Memilih hanya **fitur relevan** untuk sistem rekomendasi:
+  - `title`: Nama film (sebagai identifikasi)
+  - `genres`: Daftar genre
+  - `keywords`: Daftar kata kunci
+  - `overview`: Sinopsis film
+  - `popularity`: Skor numerik popularitas
+
+#### Alasan:
+- Salinan data mencegah perubahan tidak disengaja.
+- Ekstraksi JSON mengubah struktur nested menjadi format siap olah.
+- Null handling mencegah error saat proses teks.
+- Seleksi fitur memfokuskan pada informasi semantik yang paling berguna.
+
+---
+
+### 2. Feature Engineering
+
+#### 2.1 Pengkodean Genre
+- Mengubah daftar genre menjadi **matriks biner multi-label**:
+  - Genre → Kolom fitur
+  - Nilai 1 jika film memiliki genre tersebut, 0 jika tidak
+
+#### 2.2 Vektorisasi Teks
+#### Ringkasan Film (`overview`)
+- Menggunakan **TF-IDF Vectorization**
+- Menghapus kata umum (stop words)
+- Membatasi maksimal **5000 fitur**
+
+#### Kata Kunci (`keywords`)
+- Menggabungkan daftar kata kunci menjadi string
+- Menggunakan TF-IDF terpisah
+- Membatasi maksimal **3000 fitur**
+
+#### 2.3 Penggabungan Fitur
+Menggabungkan:
+- Matriks biner genre
+- TF-IDF ringkasan
+- TF-IDF kata kunci
+- **Skor popularitas** (dinormalisasi)
+
+Hasil: Matriks fitur akhir yang merepresentasikan film secara semantik dan numerik
+
+---
+
+### 3. Hasil Akhir Data Preparation
+
+---
+
+#### Alasan Teknis
+
+| Langkah | Tujuan |
+|--------|--------|
+| Pembuatan Salinan | Mencegah modifikasi tidak disengaja |
+| Ekstraksi JSON | Mengurai struktur kompleks jadi format analisis |
+| Pembersihan Teks | Menjamin konsistensi dan mencegah error |
+| Seleksi Fitur | Fokus pada atribut paling informatif |
+| Pengkodean Genre | Representasi multi-label yang sesuai |
+| TF-IDF | Tangkap bobot semantik kata penting |
+| Batasan Fitur | Cegah overfitting dan kurangi noise |
+| Integrasi Fitur | Representasi lengkap untuk perhitungan similarity |
+
+---
+
+#### 🚀 Kesimpulan
+
+Pipeline ini mengubah metadata film mentah menjadi **matriks fitur vektor** yang optimal untuk digunakan dalam algoritma **Content-Based Filtering**, menjaga konteks semantik antar film, dan siap digunakan untuk perhitungan kemiripan antar film.
