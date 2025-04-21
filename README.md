@@ -1,7 +1,7 @@
 # Laporan Proyek Machine Learning – Adrian Putra Ramadhan
 
 ## Project Overview
-Di era platform streaming, penonton dibanjiri ribuan pilihan film, sementara studio menghabiskan anggaran ratusan juta dolar tanpa jaminan keberhasilan komersial. Sistem rekomendasi film membantu:  
+Di era platform streaming dan big‑budget productions, investasi untuk membuat satu film bisa mencapai ratusan juta dolar. Meski begitu, banyak judul blockbuster tetap gagal secara komersial (“box‑office flop”), menimbulkan kerugian finansial besar. Di sisi lain, penonton menghadapi ribuan pilihan judul yang membuat proses memilih film menjadi sulit (paradox of choice). Sistem rekomendasi film membantu:  
 1. **Pengguna** menemukan judul yang sesuai minatnya.  
 2. **Studio/platform** meminimalkan risiko flop dengan memprediksi tema dan genre yang berpotensi laku.  
 
