@@ -80,7 +80,7 @@ Berikut adalah metadata lengkap yang tersedia dalam dataset:
 
 ### Eksplorasi Data
 **Distribusi Genre**:
-   - Genre paling umum: Drama (2361 film), Comedy (1713 film), Thriller (981 film)
+   - Genre paling umum: Drama, Comedy, Thriller
    - Visualisasi distribusi 10 besar genre:
 
    ![Top 10 Genres](./image/image.png)
