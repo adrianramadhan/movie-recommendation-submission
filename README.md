@@ -5,18 +5,6 @@ Di era platform streaming dan big‑budget productions, investasi untuk membuat 
 1. **Pengguna** menemukan judul yang sesuai minatnya.  
 2. **Studio/platform** meminimalkan risiko flop dengan memprediksi tema dan genre yang berpotensi laku.  
 
-Pada proyek ini, kita menggunakan **TMDB 5000 Movie Dataset** (±5.000 film) dengan metadata:  
-- Genres  
-- Keywords  
-- Overview  
-- Popularity  
-
-**Pendekatan yang Dipilih**:  
-Content‑based Filtering karena:  
-- Cepat di‑prototype hanya dengan metadata.  
-- Cold‑start friendly: film baru tanpa riwayat interaksi tetap bisa direkomendasikan.  
-- Hasil mudah dijelaskan (*“film X direkomendasikan karena genre/narasinya mirip film Y”*).  
-
 **Referensi Terkait**:  
 - [The Netflix Recommender System: Algorithms, Business Value, and Innovation](https://ailab-ua.github.io/courses/resources/netflix_recommender_system_tmis_2015.pdf)  
 - [A Survey of Movie Recommendation Techniques](https://medium.com/@akshaymouryaart/a-survey-on-movie-recommendation-system-d9610777f8e5)  
