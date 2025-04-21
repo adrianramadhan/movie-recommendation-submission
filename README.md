@@ -69,6 +69,7 @@ Berikut adalah metadata lengkap yang tersedia dalam dataset:
 ### Kualitas Data:
    - Tidak ada data duplikat
    - Missing values:
+
 | Kolom | Jumlah Missing | Persentase |
 |-------|----------------|------------|
 | homepage | 3091 | 64.36% |
@@ -82,4 +83,4 @@ Berikut adalah metadata lengkap yang tersedia dalam dataset:
    - Genre paling umum: Drama (2361 film), Comedy (1713 film), Thriller (981 film)
    - Visualisasi distribusi 10 besar genre:
 
-   ![Top 10 Genres](./image.png)
+   ![Top 10 Genres](./image/image.png)
