@@ -159,6 +159,6 @@ Hasil: Matriks fitur akhir yang merepresentasikan film secara semantik dan numer
 
 ---
 
-#### 🚀 Kesimpulan
+#### Kesimpulan
 
 Pipeline ini mengubah metadata film mentah menjadi **matriks fitur vektor** yang optimal untuk digunakan dalam algoritma **Content-Based Filtering**, menjaga konteks semantik antar film, dan siap digunakan untuk perhitungan kemiripan antar film.
