@@ -311,10 +311,6 @@ Skor cosine similarity antara “Avatar” dan 10 film teratas; garis merah menu
 ### Metrik Evaluasi
 
 1. **Mean Average Cosine Similarity @10 (Mean@10)**  
-    \[
-   \text{Mean@10} = \frac{1}{10}\sum\_{i=1}^{10}\cos_sim(\text{Avatar}, r_i) \;\approx\; 0.9999
-   \]
-
    - Nilai mendekati 1 menandakan rekomendasi sangat mirip secara konten.
 
 2. **Face‑Validity Check (Manual Semantic Check)**
