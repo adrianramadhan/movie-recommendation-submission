@@ -257,13 +257,6 @@ Sistem rekomendasi berbasis konten dirancang untuk merekomendasikan film berdasa
 **Catatan**: Sistem memprioritaskan kesamaan genre dan fitur konten tersembunyi dalam memberikan rekomendasi.
 Format ini:
 
-Menggunakan heading yang jelas (## dan ###)
-Menyajikan tabel rekomendasi yang terstruktur
-Memisahkan analisis menjadi poin-poin penting
-Menjaga konsistensi dengan bagian sebelumnya
-Menggunakan format Markdown standar untuk daftar dan tabel
-Menyertakan penjelasan teknis tanpa kode Python
-
 ## Evaluation
 
 Pada bagian ini kita mengevaluasi kualitas rekomendasi berdasarkan **content‑based filtering** murni (metadata saja) dengan metrik yang sesuai.
