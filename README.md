@@ -230,3 +230,64 @@ Memisahkan analisis menjadi poin-poin penting
 Menjaga konsistensi dengan bagian sebelumnya
 Menggunakan format Markdown standar untuk daftar dan tabel
 Menyertakan penjelasan teknis tanpa kode Python
+
+## Evaluation
+
+Pada bagian ini kita mengevaluasi kualitas rekomendasi berdasarkan **content‑based filtering** murni (metadata saja) dengan metrik yang sesuai.
+
+---
+
+### Data Query: Genre & Top‑N Recommendations
+
+- **Genre untuk “Avatar”**:  
+  `['Action', 'Adventure', 'Fantasy', 'Science Fiction']`
+
+- **Top‑10 Recommendations untuk “Avatar”**:
+
+  | Rank | Title                                                  | Genres                                        |
+  |:----:|--------------------------------------------------------|-----------------------------------------------|
+  | 1    | Captain America: Civil War                             | Adventure, Action, Science Fiction            |
+  | 2    | Pirates of the Caribbean: The Curse of the Black Pearl | Adventure, Fantasy, Action                    |
+  | 3    | Guardians of the Galaxy                                | Action, Science Fiction, Adventure            |
+  | 4    | Mad Max: Fury Road                                     | Action, Adventure, Science Fiction, Thriller  |
+  | 5    | Jurassic World                                         | Action, Adventure, Science Fiction, Thriller  |
+  | 6    | Terminator Genisys                                     | Science Fiction, Action, Thriller, Adventure  |
+  | 7    | Batman v Superman: Dawn of Justice                     | Action, Adventure, Fantasy                    |
+  | 8    | The Avengers                                           | Science Fiction, Action, Adventure            |
+  | 9    | Pirates of the Caribbean: Dead Man’s Chest             | Adventure, Fantasy, Action                    |
+  | 10   | Deadpool                                               | Action, Adventure, Comedy                     |
+
+- **Insight**: model berhasil memilih film–film yang tema sentralnya mirip dengan Avatar, sehingga pengguna yang menyukai tema ‘pertempuran antar dunia’ atau ‘eksplorasi planet asing’ cenderung menemukan film rekomendasi yang relevan.
+---
+
+### Distribusi Skor Cosine Similarity
+
+![Distribusi Skor Cosine Similarity untuk Rekomendasi Avatar](./images/evaluation.png)
+
+Skor cosine similarity antara “Avatar” dan 10 film teratas; garis merah menunjukkan **Mean@10**.
+- **Skor sangat tinggi (0.95–1)** untuk semua 10 film menandakan kesamaan fitur konten yang **sangat kuat**.  
+- **Garis merah (Mean@10 ≈ 0.94)** menunjukkan rata‑rata kemiripan sangat rapat ke film query.  
+- **Rentang skor sempit** menggambarkan bahwa daftar rekomendasi berada di ‘cluster’ yang hampir identik:  
+  - Kelebihan: memastikan rekomendasi sangat relevan secara konten.  
+  - Kekurangan: kurang menawarkan variasi—pengguna mungkin tidak diperlihatkan film yang sedikit berbeda tapi masih menarik.
+
+---
+
+### Metrik Evaluasi
+
+1. **Mean Average Cosine Similarity @10 (Mean@10)**  
+   \[
+     \text{Mean@10} = \frac{1}{10}\sum_{i=1}^{10}\cos\_sim(\text{Avatar}, r_i) \;\approx\; 0.9999
+   \]  
+   - Nilai mendekati 1 menandakan rekomendasi sangat mirip secara konten.
+
+2. **Face‑Validity Check (Manual Semantic Check)**  
+   - Semua rekomendasi bergenre **action/sci‑fi/adventure**, konsisten dengan genre “Avatar”.  
+   - Tema “alien”, “battle”, “future”, “space” muncul dalam sinopsis dan keywords.
+
+---
+
+### Kesimpulan
+
+- **Kekuatan**: Model sangat efektif menangkap kemiripan konten (Mean@10 tinggi).  
+- **Keterbatasan**: Rekomendasi terlalu homogen—variasi konten rendah.  
