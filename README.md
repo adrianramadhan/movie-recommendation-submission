@@ -88,6 +88,8 @@ Berikut adalah metadata lengkap yang tersedia dalam dataset:
 
 ## Data Preparation
 
+Sebelum membangun model rekomendasi, kita perlu menyiapkan metadata film mentah menjadi format numerik yang siap diolah. Proses ini terdiri dari dua tahap utama: **Ekstraksi & Transformasi Data** dan **Feature Engineering**.
+
 ---
 
 ### Ekstraksi dan Transformasi Data
@@ -163,7 +165,7 @@ Hasil: Matriks fitur akhir yang merepresentasikan film secara semantik dan numer
 
 Pipeline ini mengubah metadata film mentah menjadi **matriks fitur vektor** yang optimal untuk digunakan dalam algoritma **Content-Based Filtering**, menjaga konteks semantik antar film, dan siap digunakan untuk perhitungan kemiripan antar film.
 
-## Modeing and Result
+## Modeling and Result
 
 ### Content-Based Filtering
 Sistem rekomendasi berbasis konten dirancang untuk merekomendasikan film berdasarkan kesamaan fitur metadata seperti genre dan sinopsis. Implementasi dilakukan melalui tiga tahap utama:
@@ -262,10 +264,10 @@ Pada bagian ini kita mengevaluasi kualitas rekomendasi berdasarkan **content‑b
 
 ### Distribusi Skor Cosine Similarity
 
-![Distribusi Skor Cosine Similarity untuk Rekomendasi Avatar](./images/evaluation.png)
+![Distribusi Skor Cosine Similarity untuk Rekomendasi Avatar](./image/evaluation.png)
 
 Skor cosine similarity antara “Avatar” dan 10 film teratas; garis merah menunjukkan **Mean@10**.
-- **Skor sangat tinggi (0.95–1)** untuk semua 10 film menandakan kesamaan fitur konten yang **sangat kuat**.  
+- **Skor sangat tinggi (0.90–0.95)** untuk semua 10 film menandakan kesamaan fitur konten yang **sangat kuat**.  
 - **Garis merah (Mean@10 ≈ 0.94)** menunjukkan rata‑rata kemiripan sangat rapat ke film query.  
 - **Rentang skor sempit** menggambarkan bahwa daftar rekomendasi berada di ‘cluster’ yang hampir identik:  
   - Kelebihan: memastikan rekomendasi sangat relevan secara konten.  
