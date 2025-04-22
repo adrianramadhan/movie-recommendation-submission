@@ -90,7 +90,7 @@ Berikut adalah metadata lengkap yang tersedia dalam dataset:
 
 ---
 
-### 1. Ekstraksi dan Transformasi Data
+### Ekstraksi dan Transformasi Data
 
 #### Proses yang Dilakukan:
 - Membuat **salinan dataset asli** untuk menjaga keutuhan data sumber.
@@ -111,14 +111,14 @@ Berikut adalah metadata lengkap yang tersedia dalam dataset:
 
 ---
 
-### 2. Feature Engineering
+### Feature Engineering
 
-#### 2.1 Pengkodean Genre
+#### Pengkodean Genre
 - Mengubah daftar genre menjadi **matriks biner multi-label**:
   - Genre → Kolom fitur
   - Nilai 1 jika film memiliki genre tersebut, 0 jika tidak
 
-#### 2.2 Vektorisasi Teks
+#### Vektorisasi Teks
 #### Ringkasan Film (`overview`)
 - Menggunakan **TF-IDF Vectorization**
 - Menghapus kata umum (stop words)
@@ -129,7 +129,7 @@ Berikut adalah metadata lengkap yang tersedia dalam dataset:
 - Menggunakan TF-IDF terpisah
 - Membatasi maksimal **3000 fitur**
 
-#### 2.3 Penggabungan Fitur
+#### Penggabungan Fitur
 Menggabungkan:
 - Matriks biner genre
 - TF-IDF ringkasan
@@ -140,7 +140,7 @@ Hasil: Matriks fitur akhir yang merepresentasikan film secara semantik dan numer
 
 ---
 
-### 3. Hasil Akhir Data Preparation
+### Hasil Akhir Data Preparation
 
 ---
 
@@ -162,3 +162,71 @@ Hasil: Matriks fitur akhir yang merepresentasikan film secara semantik dan numer
 #### Kesimpulan
 
 Pipeline ini mengubah metadata film mentah menjadi **matriks fitur vektor** yang optimal untuk digunakan dalam algoritma **Content-Based Filtering**, menjaga konteks semantik antar film, dan siap digunakan untuk perhitungan kemiripan antar film.
+
+## Modeing and Result
+
+### Content-Based Filtering
+Sistem rekomendasi berbasis konten dirancang untuk merekomendasikan film berdasarkan kesamaan fitur metadata seperti genre dan sinopsis. Implementasi dilakukan melalui tiga tahap utama:
+
+#### Langkah Implementasi
+1. **Matriks Kesamaan Konten**
+   - Menggunakan cosine similarity untuk menghitung kemiripan antar film
+   - Menghasilkan matriks persegi n × n (n = jumlah film)
+   - Nilai matriks merepresentasikan tingkat kesamaan (skala 0-1) antara dua film
+
+2. **Pemetaan Judul ke Indeks**
+   - Membuat dictionary untuk memetakan judul film ke indeks DataFrame
+   - Mempermudah pencarian film referensi dalam matriks
+
+3. **Mekanisme Rekomendasi**
+   - **Input**: 
+     - Judul film referensi 
+     - Jumlah rekomendasi (top_n)
+   - **Proses**:
+     1. Identifikasi indeks film referensi
+     2. Ambil dan urutkan skor kesamaan dari matriks
+     3. Filter film dengan skor tertinggi (eksklusif film referensi)
+   - **Output**:
+     - Judul film yang direkomendasikan
+     - Genre film rekomendasi
+
+### Rekomendasi Top-N
+#### Rekomendasi untuk Film "Avatar"
+**Genre Referensi**: Action, Adventure, Fantasy, Science Fiction
+
+| Rank | Judul Film                                      | Genre Dominan                              |
+|------|-------------------------------------------------|--------------------------------------------|
+| 1    | Captain America: Civil War                     | Adventure, Action, Science Fiction        |
+| 2    | Pirates of the Caribbean: The Curse of the... | Adventure, Fantasy, Action                |
+| 3    | Guardians of the Galaxy                        | Action, Science Fiction, Adventure        |
+| 4    | Mad Max: Fury Road                             | Action, Adventure, Science Fiction        |
+| 5    | Jurassic World                                 | Action, Adventure, Science Fiction        |
+| 6    | Terminator Genisys                             | Science Fiction, Action, Thriller         |
+| 7    | Batman v Superman: Dawn of Justice             | Action, Adventure, Fantasy                |
+| 8    | The Avengers                                   | Science Fiction, Action, Adventure        |
+| 9    | Pirates of the Caribbean: Dead Man's Chest    | Adventure, Fantasy, Action                |
+| 10   | Deadpool                                       | Action, Adventure, Comedy                 |
+
+#### Analisis Rekomendasi
+1. **Konsistensi Genre**:
+   - Semua rekomendasi memiliki minimal 2 genre yang sama dengan Avatar
+   - Film seperti *Guardians of the Galaxy* dan *The Avengers* memiliki kesamaan kuat pada genre Science Fiction
+
+2. **Variasi Tema**:
+   - Mencakup tema petualangan epik (*Pirates of the Caribbean*)
+   - Teknologi futuristik (*Terminator Genisys*)
+   - Dunia fantasi (*Deadpool*)
+
+3. **Kinerja Sistem**:
+   - Berhasil mengidentifikasi kesamaan semantik dari fitur teks (sinopsis/kata kunci) dan metadata genre
+   - Rekomendasi relevan secara tematik meskipun berasal dari franchise berbeda
+
+**Catatan**: Sistem memprioritaskan kesamaan genre dan fitur konten tersembunyi dalam memberikan rekomendasi.
+Format ini:
+
+Menggunakan heading yang jelas (## dan ###)
+Menyajikan tabel rekomendasi yang terstruktur
+Memisahkan analisis menjadi poin-poin penting
+Menjaga konsistensi dengan bagian sebelumnya
+Menggunakan format Markdown standar untuk daftar dan tabel
+Menyertakan penjelasan teknis tanpa kode Python
